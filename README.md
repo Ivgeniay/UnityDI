@@ -5,10 +5,6 @@
 
 > Simple multi-scene DI container
 
-## Description
-
-Описание вашего плагина. Расскажите, что он делает, для чего он предназначен и какие особенности имеет.
-
 ## Installation
 
 1. Clone this repository or download the archive and extract it. (Or you can download .unitypackage in the "Release" section)
