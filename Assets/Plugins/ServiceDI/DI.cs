@@ -52,7 +52,17 @@ namespace MainCore.Maintenance.ServiceDI
         private void MonoInject(MonoBehaviour monoScript)
         {
             var type = monoScript.GetType();
-            var ctor = type.GetMethod("Construct", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo ctor; //= type.GetMethod("Construct", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.FlattenHierarchy);
+
+            try
+            {
+                ctor = type.GetMethod("Construct", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            }
+            catch (Exception e)
+            {
+                ctor = type.GetMethod("Construct", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.FlattenHierarchy);
+            }
+
             if (ctor != null)
             {
                 ParameterInfo[] parameters = ctor.GetParameters();
